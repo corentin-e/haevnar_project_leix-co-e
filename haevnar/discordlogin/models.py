@@ -21,6 +21,9 @@ class DiscordUser(models.Model):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     
+    REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'username'
+
     def has_perm(self, perm, obj=None):
         return self.is_superuser
 
@@ -29,5 +32,7 @@ class DiscordUser(models.Model):
     
     def get_username(self):
         return self.username
+
+    is_anonymous = False
     
-    
+    is_authenticated = True

@@ -16,12 +16,38 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
-from discordlogin import views
+from home import views as home_views
+from discordlogin import views as auth_views
+from alliance import views as alliance_views
+from event import views as event_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('oauth2', views.home, name='oauth2'),
-    path('oauth2/login', views.discord_login, name='oauth2_login'),
-    path('oauth2/login/redirect', views.discord_login_redirect, name='oauth2_login_redirect'),
+    path('', home_views.home, name='home'),
+    
+    # OAuth2 paths #
+    path('oauth2/', auth_views.home, name='oauth2'),
+    path('oauth2/login/', auth_views.discord_login, name='oauth2_login'),
+    path('oauth2/login/redirect/', auth_views.discord_login_redirect, name='oauth2_login_redirect'),
+    
+    # Alliance paths #
+    path('alliance/', alliance_views.Groups.as_view(), name='alliance'),
+    path('alliance/creation/', alliance_views.CreateGroup.as_view(), name='create_group'),
+    path('alliance/management/', alliance_views.Management.as_view(), name='manage_alliance'),
+    path('alliance/management/<int:pk>/', alliance_views.UpdateGroup.as_view(), name='update_group'),
+
+    path('approve_group/<int:id>/', alliance_views.approve_group, name='approve_group'),
+    path('revoke_group/<int:id>/', alliance_views.revoke_group, name='revoke_group'),
+
+    # Event paths #
+    path('events/', event_views.Events.as_view(), name='events'),
+    path('events/creation/', event_views.CreateEvent.as_view(), name='create_event'),
+    path('events/management/', event_views.Management.as_view(), name='manage_events'),
+
+    path('delete_event/<int:id>/', event_views.delete_event, name='delete_event'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

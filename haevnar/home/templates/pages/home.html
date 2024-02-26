@@ -1,0 +1,26 @@
+<h1>Accueil</h1>
+
+{% include "navbar.html" %}
+
+<h2>Evenements</h2>
+<table>
+    <tr>
+        <th>Nom</th>
+    </tr>
+    {% for event in events  %}
+    <tr> 
+        <td>{{ event.name }}</td>
+    {% endfor %}
+</table>
+
+<h2>Groups</h2>
+<table>
+    <tr>
+        <th>Nom</th>
+    </tr>
+    {% for group in groups  %}
+    <tr> 
+        <td>{{ group.name }}</td>
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,33 @@
+<h1>Alliance Management</h1>
+
+{% include "navbar.html" %}
+
+<table>
+    <tr>
+        <th>Logo</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Approval</th>
+        <th>Actions</th>
+    </tr>
+    {% for group in object_list  %}
+    <tr> 
+        <td><img src="{{ group.logo.url }}" width="50" height="50" /></td>
+        <td>{{ group.name }}</td>
+        <td>{{ group.description }}</td>
+        <td>{{ group.status }}</td>
+        <td>{{ group.approved }}</td>
+        {% if group.approved %}
+        <td>
+            <a class="btn btn-primary" href="{% url 'revoke_group' id=group.id%}">Revoke</a>
+
+        </td>
+        {% else %}
+        <td>
+            <a class="btn btn-primary" href="{% url 'approve_group' id=group.id%}">Approve</a>
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>

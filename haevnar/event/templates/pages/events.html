@@ -1,0 +1,22 @@
+<h1>Evenements</h1>
+
+{% include "navbar.html" %}
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Emplacement</th>
+        <th>Cree par</th>
+    </tr>
+    {% for event in object_list  %}
+    <tr> 
+        <td>{{ event.name }}</td>
+        <td>{{ event.description }}</td>
+        <td>{{ event.date }}</td>
+        <td>{{ event.emplacement }}</td>
+        <td>{{ event.created_by.username }}</td>
+    </tr>
+    {% endfor %}
+</table>
