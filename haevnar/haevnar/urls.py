@@ -23,6 +23,7 @@ from home import views as home_views
 from discordlogin import views as auth_views
 from alliance import views as alliance_views
 from event import views as event_views
+from actu import views as actu_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,6 +49,11 @@ urlpatterns = [
     path('events/management/', event_views.Management.as_view(), name='manage_events'),
 
     path('delete_event/<int:id>/', event_views.delete_event, name='delete_event'),
+
+    # Actu paths #
+    path('actus/', actu_views.Management.as_view(), name='manage_actus'),
+    path('actus/creation/', actu_views.CreateActu.as_view(), name='create_actu'),
+    path('delete_actu/<int:pk>/', actu_views.delete_actu, name='delete_actu'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

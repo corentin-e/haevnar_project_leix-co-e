@@ -1,5 +1,10 @@
+{% extends "base.html" %}
+{% block title %}<h2>Alliance</h2>{% endblock title%}
+
+{% block content %}
 <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Update">
 </form>
+{% endblock %}

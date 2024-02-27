@@ -1,7 +1,7 @@
-<h1>Alliance</h1>
+{% extends "base.html" %}
+{% block title %}<h2>Alliance</h2>{% endblock title%}
 
-{% include "navbar.html" %}
-
+{% block content %}
 <table>
     <tr>
         <th>Logo</th>
@@ -20,3 +20,4 @@
     </tr>
     {% endfor %}
 </table>
+{% endblock %}

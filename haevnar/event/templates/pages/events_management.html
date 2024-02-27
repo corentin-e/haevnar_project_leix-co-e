@@ -1,7 +1,7 @@
-<h1>Event Management</h1>
+{% extends "base.html" %}
+{% block title %}<h2>Evenement Management</h2>{% endblock title%}
 
-{% include "navbar.html" %}
-
+{% block content %}
 <table>
     <tr>
         <th>Name</th>
@@ -17,9 +17,10 @@
         <td>{{ event.description }}</td>
         <td>{{ event.date }}</td>
         <td>{{ event.emplacement }}</td>
-        <td>{{ event.created_by.username }}</td>
+        <td>{{ event.created_by }}</td>
         <td>
             <a class="btn btn-primary" href="{% url 'delete_event' id=event.id%}">Delete</a>
         </td>
     {% endfor %}
 </table>
+{% endblock %}

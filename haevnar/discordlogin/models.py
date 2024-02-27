@@ -9,8 +9,8 @@ class DiscordUser(models.Model):
     id = models.BigIntegerField(primary_key=True)
     username = models.CharField(max_length=100)
     avatar = models.CharField(max_length=100)
-    public_flags = models.IntegerField(max_length=100)
-    flags = models.IntegerField(max_length=100)
+    public_flags = models.IntegerField()
+    flags = models.IntegerField()
     locale = models.CharField(max_length=100)
     mfa_enabled = models.BooleanField()
     last_login = models.DateTimeField(null=True)
@@ -36,3 +36,6 @@ class DiscordUser(models.Model):
     is_anonymous = False
     
     is_authenticated = True
+
+    def __str__(self):
+        return self.username

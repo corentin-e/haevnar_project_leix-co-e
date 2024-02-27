@@ -1,8 +1,27 @@
-<h1>Accueil</h1>
+{% extends "base.html" %}
+{% block title%}<h2>Accueil</h2>{% endblock title%}
 
-{% include "navbar.html" %}
+{% block content %}
+<h3>Vie de l'alliance</h3>
+<table>
+    <tr>
+        <th></th>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Cree par</th>
+    </tr>
+    {% for actu in actus  %}
+    <tr> 
+        <td><img src="{{ actu.image.url }}" alt="{{ actu.title }}" width="100" height="100"></td>
+        <td>{{ actu.title }}</td>
+        <td>{{ actu.description }}</td>
+        <td>{{ actu.created_by }}</td>
+    </tr>
+    {% endfor %}
+</table>
 
-<h2>Evenements</h2>
+
+<h3>Evenements</h3>
 <table>
     <tr>
         <th>Nom</th>
@@ -10,10 +29,11 @@
     {% for event in events  %}
     <tr> 
         <td>{{ event.name }}</td>
+    </tr>
     {% endfor %}
 </table>
 
-<h2>Groups</h2>
+<h3>Groups</h3>
 <table>
     <tr>
         <th>Nom</th>
@@ -24,3 +44,5 @@
     </tr>
     {% endfor %}
 </table>
+
+{% endblock %}
