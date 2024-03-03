@@ -14,7 +14,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,12 +25,11 @@ from event import views as event_views
 from actu import views as actu_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', home_views.admin, name='admin'),
     path('', home_views.home, name='home'),
     
     # OAuth2 paths #
-    path('oauth2/', auth_views.home, name='oauth2'),
-    path('oauth2/login/', auth_views.discord_login, name='oauth2_login'),
+    path('oauth2/login/', auth_views.discord_login, name='login'),
     path('oauth2/login/redirect/', auth_views.discord_login_redirect, name='oauth2_login_redirect'),
     
     # Alliance paths #
@@ -42,6 +40,10 @@ urlpatterns = [
 
     path('approve_group/<int:id>/', alliance_views.approve_group, name='approve_group'),
     path('revoke_group/<int:id>/', alliance_views.revoke_group, name='revoke_group'),
+
+    path('alliance/management/<int:group>/members', alliance_views.MembersViews.as_view(), name='edit_members'),
+    path('alliance/management/<int:group>/members/<int:pk>', alliance_views.MemberEditView.as_view(), name='edit_member'),
+    path('alliance/management/<int:group>/members/creation', alliance_views.MembersCreateView.as_view(), name='create_members'),
 
     # Event paths #
     path('events/', event_views.Events.as_view(), name='events'),

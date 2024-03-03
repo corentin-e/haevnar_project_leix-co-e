@@ -24,10 +24,10 @@ class DiscordUser(models.Model):
     REQUIRED_FIELDS = []
     USERNAME_FIELD = 'username'
 
-    def has_perm(self, perm, obj=None):
+    def has_perm(self, perm, obj=None) -> bool:
         return self.is_superuser
 
-    def has_module_perms(self, app_label):
+    def has_module_perms(self, app_label) -> bool:
         return self.is_superuser
     
     def get_username(self):

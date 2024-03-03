@@ -4,10 +4,9 @@
 {% block content %}
 <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
+    {{ form }}
+    <input type="submit" value="Submit">
 </form>
-
 {% include "navbar_admin.html" %}
 {% endblock %}
 

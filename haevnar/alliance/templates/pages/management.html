@@ -7,28 +7,23 @@
         <th>Logo</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Status</th>
+        <th>Type</th>
         <th>Approval</th>
+        <th>Membres</th>
         <th>Actions</th>
     </tr>
     {% for group in object_list  %}
     <tr> 
         <td><img src="{{ group.logo.url }}" width="50" height="50" /></td>
-        <td>{{ group.name }}</td>
+        <td><a href={% url "update_group" pk=group.pk %}> {{ group.name }}</a></td>
         <td>{{ group.description }}</td>
-        <td>{{ group.status }}</td>
-        <td>{{ group.approved }}</td>
-        {% if group.approved %}
-        <td>
-            <a class="btn btn-primary" href="{% url 'revoke_group' id=group.id%}">Revoke</a>
-
-        </td>
-        {% else %}
-        <td>
-            <a class="btn btn-primary" href="{% url 'approve_group' id=group.id%}">Approve</a>
-        </td>
-        {% endif %}
+        <td>{{ group.get_type_display  }}</td>
+        <td>{{ group.get_status_display }}</td>
+        <td><a href={% url "edit_members" group=group.pk %}>Liste</a></td>
+        <td><a class="btn btn-primary" href="{% url 'approve_group' id=group.id%}">Approve</a></td>
     </tr>
     {% endfor %}
 </table>
+
+{% include "navbar_admin.html" %}
 {% endblock %}

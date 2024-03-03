@@ -1,3 +1,7 @@
+{% if user.is_authenticated%}
+<p align="right"> {{ user.username }} </p>
+{% endif %}
 <a href="{% url 'home' %}">Accueil</a>
 <a href="{% url 'alliance' %}">Alliance</a>
 <a href="{% url 'events' %}">Evenements</a>    
+

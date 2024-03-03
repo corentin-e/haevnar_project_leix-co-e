@@ -7,16 +7,14 @@
         <th>Logo</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Status</th>
-        <th>Approval</th>
+        <th>Type</th>
     </tr>
     {% for group in object_list  %}
     <tr> 
         <td><img src="{{ group.logo.url }}" width="50" height="50" /></td>
         <td>{{ group.name }}</td>
         <td>{{ group.description }}</td>
-        <td>{{ group.status }}</td>
-        <td>{{ group.approved }}</td>
+        <td>{{ group.get_type_display }}</td>
     </tr>
     {% endfor %}
 </table>

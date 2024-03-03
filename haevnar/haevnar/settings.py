@@ -35,6 +35,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AUTH_USER_MODEL = "discordlogin.DiscordUser"
+ADMIN_ENABLED = False
 
 # Application definition
 
@@ -128,6 +129,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_URL = 'login'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

@@ -1,7 +1,7 @@
 import os
 
-from django.shortcuts import render, redirect
-from django.http import HttpRequest, HttpResponse, JsonResponse
+from django.shortcuts import redirect
+from django.http import HttpRequest, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -13,9 +13,6 @@ CLIENT_ID = os.environ.get('CLIENT_ID')
 SECRET = os.environ.get('SECRET')
 
 # Create your views here.
-def home(request: HttpRequest) -> JsonResponse:
-    return JsonResponse({"message": "Hello, World!"})
-
 def discord_login(request: HttpRequest):
     return redirect(AUTH_URL)
 
@@ -44,4 +41,4 @@ def discord_login_redirect(request: HttpRequest):
     discord_user = authenticate(request=request, user=user)
     login(request, discord_user)
 
-    return JsonResponse({'user': user})
+    return redirect('home')

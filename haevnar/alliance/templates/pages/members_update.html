@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}<h2>Membres</h2>{% endblock title%}
+
+{% block content %}
+<table>
+    {% for member in object_list  %}
+    <tr> 
+        <td><a href={% url 'edit_member' pk=member.pk group=member.group.pk%}>{{member.rsi_handle}}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% include "navbar_admin.html" %}
+{% endblock %}
+

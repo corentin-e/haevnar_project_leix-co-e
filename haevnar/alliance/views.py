@@ -1,17 +1,17 @@
 from django.http import HttpResponseRedirect
-
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import user_passes_test
+from django.urls import reverse
 
 from utils import SuperuserTestMixin
 
-from .models import Group
+from .models import Group, Member
 
-# Create your views here.
+### GROUPS DISPLAY AND MANAGEMENT ###
 class Groups(ListView):
     model = Group
-    queryset = Group.objects.filter(approved=True)
+    queryset = Group.objects.filter(status=Group.Status.APPROVED)
     template_name = "pages/alliance.html"
 
 class CreateGroup(CreateView, SuperuserTestMixin):
@@ -32,16 +32,45 @@ class UpdateGroup(UpdateView, SuperuserTestMixin):
     success_url = "/alliance/management"
 
 
+### MEMBERS DISPLAY AND MANAGEMENT ###
+class MembersViews(ListView):
+    model = Member
+    template_name = "pages/members_update.html"
+    def get_queryset(self):
+        return Member.objects.filter(group=self.kwargs['group'])
+
+class MemberEditView(UpdateView, SuperuserTestMixin):
+    model = Member
+    template_name = "pages/member_update.html"
+    fields = ["discord_username", "rsi_handle", "leader"]
+
+    def get_success_url(self):
+        return reverse("edit_members", args=[self.kwargs['group']])
+
+class MembersCreateView(CreateView, SuperuserTestMixin):
+    model = Member
+    template_name = "pages/members_create.html"
+    fields = ["discord_username", "rsi_handle", "leader"]
+
+    def get_success_url(self):
+        return reverse("edit_members", args=[self.kwargs['group']])
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.group = Group.objects.get(pk=self.kwargs['group'])
+        return super().form_valid(form)
+
+
 @user_passes_test(lambda u: u.is_superuser)
 def revoke_group(_, id: int) -> HttpResponseRedirect:
     group = Group.objects.get(pk=id)
-    group.approved = False
+    group.status = Group.Status.REJECTED
     group.save()
     return HttpResponseRedirect("/alliance/management")
 
 @user_passes_test(lambda u: u.is_superuser)
 def approve_group(_, id: int) -> HttpResponseRedirect:
     alliance = Group.objects.get(pk=id)
-    alliance.approved = True
+    alliance.status = Group.Status.APPROVED
     alliance.save()
     return HttpResponseRedirect("/alliance/management")

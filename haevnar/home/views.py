@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import user_passes_test
 
 from event.models import Event
 from alliance.models import Group
@@ -18,3 +19,7 @@ def home(request) -> render:
     groups = reversed(groups)
 
     return render(request, "pages/home.html", context={'actus': actus, 'events': events, 'groups': groups})
+
+@user_passes_test(lambda u: u.is_superuser)
+def admin(request) -> render:
+    return render(request, "pages/admin.html")

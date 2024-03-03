@@ -11,6 +11,6 @@ pipenv install
 ## Lancement du serveur
 
 ```
-pipenv run haevnar/manage.py makemigrations
+pipenv run haevnar/manage.py migrate
 pipenv run haevnar/manage.py runserver
 ```
