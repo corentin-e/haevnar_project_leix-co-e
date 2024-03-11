@@ -5,7 +5,7 @@ import LogoHaev from '../../assets/logos/logo_haevnär_white.png'
 <template>
     <div class="button-container mt-3 mb-3 flex justify-center items-center cursor-pointer w-full h-56 relative">
         <div class="button-band border-2 border-haev_orange h-0"></div>
-        <button type="button" name="Lancer l'application" class="flex items-center justify-content-center Z-50 absolute rounded-full button-custom bg-haev_dark border border-haev_white py-8 px-8" @click="$emit('load', $event)">
+        <button type="button" name="Lancer l'application" class="flex items-center justify-content-center z-50 absolute rounded-full button-custom bg-haev_dark border border-haev_white py-8 px-8" @click="$emit('load', $event)">
             <img :src="LogoHaev" alt="logo Haevnär">
         </button>
     </div>
