@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'rest_framework',
-    'home.apps.HomeConfig',
     'discordlogin.apps.DiscordloginConfig',
     'alliance.apps.AllianceConfig',
     'event.apps.EventConfig',

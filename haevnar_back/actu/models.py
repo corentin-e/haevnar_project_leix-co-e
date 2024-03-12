@@ -10,7 +10,7 @@ class Actu(models.Model):
     description = models.TextField()
     date = models.DateTimeField(default=timezone.now, auto_now=False, verbose_name="Date de parution")
     image = models.ImageField(upload_to="actus/", null=True)
-    created_by = models.ForeignKey(DiscordUser, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(DiscordUser, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Créé par")
 
     def __str__(self):
         return self.title
@@ -19,4 +19,4 @@ class Actu(models.Model):
 class ActuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Actu
-        fields = ['title', 'description', 'date', 'image', 'created_by']
+        fields = '__all__'

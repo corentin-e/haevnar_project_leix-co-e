@@ -1,7 +1,7 @@
 import os
 
 from django.shortcuts import redirect
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -41,4 +41,4 @@ def discord_login_redirect(request: HttpRequest):
     discord_user = authenticate(request=request, user=user)
     login(request, discord_user)
 
-    return redirect('home')
+    return redirect('/')
