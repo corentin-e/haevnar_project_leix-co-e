@@ -1,14 +1,32 @@
 <script setup lang="ts">
-import WelcomeLoader from './components/WelcomeLoader/WelcomeLoaderPage.vue'
+import { ref } from 'vue'
 
-function loadApplication () {
+import WelcomeLoader from './components/loading/loading_specific/welcome/WelcomeLoader.vue'
+
+const darkModeActive = ref(true)
+
+const onSwitchScreenMode = () => {
+    darkModeActive.value = !darkModeActive.value
+}
+
+const loadApplication = () => {
   const loader = document.getElementById('loader')
   loader.classList.add("hidden-loader")
 }
 </script>
 
+<header>
+  
+</header>
+
 <template>
-  <WelcomeLoader id="loader" class="loader w-full" @load="loadApplication"/>
+  <WelcomeLoader 
+    id="loader" 
+    class="loader w-full"
+    :dark-mode-active="darkModeActive"
+    @screenMode="onSwitchScreenMode"
+    @load="loadApplication"
+  />
 </template>
 
 <style scoped>
@@ -21,4 +39,4 @@ function loadApplication () {
     overflow: hidden;
     opacity: 0;
   }
-</style>
+</style>./components/loading/loading_specific/welcome/WelcomeLoader.vue

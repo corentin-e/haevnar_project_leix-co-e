@@ -1,12 +1,28 @@
 <script setup lang="ts">
-import LogoHaev from '../../assets/logos/logo_haevnär_white.png'
+
+import LogoHaevLight from '../../../../assets/logos/logo_haevnar_white_orange.png'
+import LogoHaevDark from '../../../../assets/logos/logo_haevnar_balck_orange.png'
+
+defineProps({
+    darkMode: Boolean,
+})
+
 </script>
 
 <template>
     <div class="button-container mt-3 mb-3 flex justify-center items-center cursor-pointer w-full h-56 relative">
         <div class="button-band border-2 border-haev_orange h-0"></div>
-        <button type="button" name="Lancer l'application" class="flex items-center justify-content-center z-50 absolute rounded-full button-custom bg-haev_dark border border-haev_white py-8 px-8" @click="$emit('load', $event)">
-            <img :src="LogoHaev" alt="logo Haevnär">
+        <button 
+            type="button" 
+            name="Lancer l'application" 
+            class="flex items-center justify-items-center z-50 absolute rounded-full button-custom border py-8 px-8"
+            :class="darkMode ? 'bg-haev_dark border-haev_white' : 'bg-haev_white border-haev_dark'" 
+            @click="$emit('load', $event)"
+        >
+            <img 
+                :src="darkMode ? LogoHaevLight : LogoHaevDark" 
+                alt="logo Haevnär"
+            >
         </button>
     </div>
 </template>
@@ -21,8 +37,8 @@ import LogoHaev from '../../assets/logos/logo_haevnär_white.png'
         transition: all .5s ease;
     }
     .button-custom {
-        width: 200px;
-        height: 200px;
+        width: 160px;
+        height: 160px;
         transition: all .5s ease;
         box-shadow: 0px 1px 30px 9px rgba(0, 0, 0, 0.4);
     }
