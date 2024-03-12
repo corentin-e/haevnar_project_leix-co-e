@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from rest_framework import serializers
 
 from discordlogin.models import DiscordUser
 
@@ -13,3 +14,9 @@ class Actu(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ActuSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Actu
+        fields = ['title', 'description', 'date', 'image', 'created_by']

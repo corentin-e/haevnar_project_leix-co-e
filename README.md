@@ -1,6 +1,8 @@
-# HAEVNAR Backend
+# HAEVNAR 
 
-## Installation
+## Backend
+
+### Installation
 
 Python version >= 3.10 et `pipenv` installe
 
@@ -8,7 +10,7 @@ Python version >= 3.10 et `pipenv` installe
 pipenv install
 ```
 
-## Lancement du serveur
+### Lancement du serveur
 
 ```
 pipenv run haevnar/manage.py migrate
