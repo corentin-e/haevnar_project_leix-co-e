@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from rest_framework import serializers
+
 # Create your models here.
 class Group(models.Model):
     class GroupType(models.TextChoices):
@@ -37,3 +39,14 @@ class Member(models.Model):
     rsi_handle = models.CharField(max_length=100)
     leader = models.BooleanField(default=False)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = '__all__'
+
+        
+class MemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Member
+        fields = '__all__'
