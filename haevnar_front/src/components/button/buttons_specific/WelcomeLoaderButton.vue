@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
-import LogoHaevLight from '../../../../assets/logos/logo_haevnar_white_orange.png'
-import LogoHaevDark from '../../../../assets/logos/logo_haevnar_balck_orange.png'
+import LogoHaevLight from '@/assets/logos/logo_haevnar_white_orange.png'
+import LogoHaevDark from '@/assets/logos/logo_haevnar_black_orange.png'
 
 defineProps({
     darkMode: Boolean,
@@ -15,8 +15,8 @@ defineProps({
         <button 
             type="button" 
             name="Lancer l'application" 
-            class="flex items-center justify-items-center z-50 absolute rounded-full button-custom border py-8 px-8"
-            :class="darkMode ? 'bg-haev_dark border-haev_white' : 'bg-haev_white border-haev_dark'" 
+            class="flex items-center justify-items-center z-50 absolute rounded-full button-custom py-8 px-8"
+            :class="darkMode ? 'bg-haev_dark' : 'bg-haev_white'" 
             @click="$emit('load', $event)"
         >
             <img 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-    import WelcomeLoaderButton from './WelcomeLoaderButton.vue'
+    import WelcomeLoaderButton from '../../../button/buttons_specific/WelcomeLoaderButton.vue'
     import SwitchScreenMode from '../../../switch/switch_specific/SwitchScreenMode.vue'
 
     const emit = defineEmits(['inFocus', 'screenMode', 'load'])
@@ -32,4 +32,4 @@
             :class="darkModeActive ? 'text-haev_white' : 'text-haev_dark'"
         >Lancer le chargement de l'application</span>
     </div>
-</template>
+</template>../../../button/buttons_specific/WelcomeLoaderButton.vue
