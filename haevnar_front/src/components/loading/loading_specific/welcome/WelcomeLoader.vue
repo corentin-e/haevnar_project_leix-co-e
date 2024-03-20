@@ -13,10 +13,10 @@
 
 <template>
     <div 
-        class="h-screen absolute text-white flex flex-col justify-center items-center transition-all duration-500"
+        class="h-screen absolute text-white flex flex-col justify-center items-center transition-all duration-500 z-50"
         :class="darkModeActive ? 'bg-haev_dark' : 'bg-haev_white'"
     >
-        <div class="top-0 right-0 absolute mt-5 mr-5">
+        <div class="top-0 right-0 absolute mt-9 mr-5">
             <SwitchScreenMode
                 :dark-mode="darkModeActive"
                 @screenMode="emit('screenMode')"

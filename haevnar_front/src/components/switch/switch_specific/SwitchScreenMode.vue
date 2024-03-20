@@ -27,7 +27,7 @@ const onClickSwitch = () => {
                 :class="darkMode ? 'w-custom-dark' : 'w-custom-ligth' "
             >
                 <div 
-                    class=" rounded-full w-5 h-5 z-50 absolute transition-all duration-500"
+                    class=" rounded-full w-5 h-5 z-30 transition-all duration-500"
                     :class="darkMode ? 'bg-haev_white' : 'bg-haev_dark'"
                 >
                 </div>

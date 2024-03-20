@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import WelcomeLoader from './components/loading/loading_specific/welcome/WelcomeLoader.vue'
+import HeaderPage from '@/components/HeaderPage.vue'
 
 const darkModeActive = ref(true)
 
@@ -11,7 +12,7 @@ const onSwitchScreenMode = () => {
 
 const loadApplication = () => {
   const loader = document.getElementById('loader')
-  loader.classList.add("hidden-loader")
+  loader?.classList.add("hidden-loader")
 }
 </script>
 
@@ -19,14 +20,24 @@ const loadApplication = () => {
   
 </header>
 
-<template>
-  <WelcomeLoader 
-    id="loader" 
-    class="loader w-full"
-    :dark-mode-active="darkModeActive"
-    @screenMode="onSwitchScreenMode"
-    @load="loadApplication"
-  />
+<template >
+  <div
+    class="w-100 h-screen"
+    :class="darkModeActive ? 'bg-haev_dark': 'bg-haev_white'"
+  >
+    <WelcomeLoader 
+      id="loader" 
+      class="loader w-full"
+      :dark-mode-active="darkModeActive"
+      @screenMode="onSwitchScreenMode"
+      @load="loadApplication"
+    />
+    <HeaderPage
+      :dark-mode-active="darkModeActive"
+      @screenMode="onSwitchScreenMode"
+    />
+  </div>
+  
 </template>
 
 <style scoped>

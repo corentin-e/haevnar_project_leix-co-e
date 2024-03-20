@@ -8,6 +8,16 @@ html, body {
   font-family: 'Saira', sans-serif;
 }
 
+.haev-white {
+  color: var(--haev-white, #E4E4E4) ;
+  background-color: var(--haev-white, #E4E4E4);
+}
+
+.haev-orange {
+  color: #F77C04;
+  background-color: #F77C04;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
