@@ -8,14 +8,30 @@ html, body {
   font-family: 'Saira', sans-serif;
 }
 
-.haev-white {
-  color: var(--haev-white, #E4E4E4) ;
-  background-color: var(--haev-white, #E4E4E4);
+:root {
+  --haev_blue: #2D72A4;
+  --haev_dark: #323436;
+  --haev_orange: #F77C04;
+  --haev_white: #E4E4E4;
+
+  /* Dark Theme */
+  --haev_text_mode_dark: var(--haev_white);
+  --haev_icon_mode_dark: var(--haev_white);
+  --haev_bg_mode_dark: var(--haev_dark);
+
+  /* Light Theme */
+  --haev_text_mode_light: var(--haev_dark);
+  --haev_icon_mode_light: var(--haev_dark);
+  --haev_bg_mode_light: var(--haev_white);
+
+  --bg_app: var(--haev_bg_mode_dark);
+  --text_app: var(--haev_text_mode_dark);
+  --icon_app: var( --haev_icon_mode_dark);
 }
 
-.haev-orange {
-  color: #F77C04;
-  background-color: #F77C04;
+.theme-mode {
+  background-color: var(--bg_app);
+  color: var(--text_app);
 }
 
 @tailwind base;

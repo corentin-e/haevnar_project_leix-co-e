@@ -1,30 +1,31 @@
 <script setup lang="ts">
     import { RouterLink, useRouter } from 'vue-router'
-    import { computed} from 'vue'
+    import { computed } from 'vue'
+    import { useThemeStore } from '@/stores/app-store'
 
     import SwitchScreenMode from '@/components/switch/switch_specific/SwitchScreenMode.vue';
 
     import LogoTitleHaevnarBlack from '../assets/logos/logo_haevnär_black_title.png'
     import LogoTitleHaevnarWhite from '../assets/logos/logo_haevnär_white_title.png'
 
-    defineProps({
-        darkModeActive: Boolean,
-    })
+    const theme = useThemeStore()
 
-    const router = useRouter()
-    const emit = defineEmits(['inFocus', 'screenMode'])
+    theme.theme
 
     const getRouteName = computed(() => router.currentRoute.value.name)
+
+    const router = useRouter()
+
+    const emit = defineEmits(['inFocus', 'screenMode'])
 </script>
 
 <template>
     <div 
-        class="flex items-center justify-between px-5"
-        :class="darkModeActive ? 'text-haev_white' : 'text-haev_dark'"
+        class="flex items-center justify-between px-5 text_mode"
     >
         <RouterLink to="/">
             <img 
-                :src="darkModeActive ? LogoTitleHaevnarWhite : LogoTitleHaevnarBlack"
+                :src="theme.theme == 'dark' ? LogoTitleHaevnarWhite : LogoTitleHaevnarBlack"
                 width="230"
                 alt="logo title Haevnär"
             >
@@ -66,7 +67,6 @@
         </div>
 
         <SwitchScreenMode
-            :dark-mode="darkModeActive"
             @screenMode="emit('screenMode')"
         />
     </div>
@@ -74,8 +74,8 @@
 
 <style>
     .nav-link-custom {
-        color: #E4E4E4;
-        border-bottom: 1px solid #E4E4E4;
+        color: var(--text_app);
+        border-bottom: 1px solid var(--text_app);
         transition: all 0.5s;
     }
     .nav-link-custom:hover {

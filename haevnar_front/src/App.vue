@@ -1,19 +1,37 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 
-import WelcomeLoader from './components/loading/loading_specific/welcome/WelcomeLoader.vue'
+import { useThemeStore } from '@/stores/app-store'
+
+import WelcomeLoader from '@/components/loading/loading_specific/welcome/WelcomeLoader.vue'
 import HeaderPage from '@/components/HeaderPage.vue'
 
-const darkModeActive = ref(true)
+const theme = useThemeStore()
 
-const onSwitchScreenMode = () => {
-    darkModeActive.value = !darkModeActive.value
-}
+theme.theme
+
+const loaderActive = ref(true)
+
+const themeMode = computed(() => {
+  return theme.theme
+})
+
+
+watch(themeMode, (newTheme) => {
+  if(newTheme == 'dark') {
+    document.documentElement.style.setProperty('--bg_app', 'var(--haev_bg_mode_dark)');
+    document.documentElement.style.setProperty('--text_app', 'var(--haev_text_mode_dark)');
+  } else {
+    document.documentElement.style.setProperty('--bg_app', 'var(--haev_bg_mode_light)');
+    document.documentElement.style.setProperty('--text_app', 'var(--haev_text_mode_light)');
+  }
+})
+
 
 const loadApplication = () => {
-  const loader = document.getElementById('loader')
-  loader?.classList.add("hidden-loader")
+  loaderActive.value = false
 }
+
 </script>
 
 <header>
@@ -22,20 +40,15 @@ const loadApplication = () => {
 
 <template >
   <div
-    class="w-100 h-screen"
-    :class="darkModeActive ? 'bg-haev_dark': 'bg-haev_white'"
+    class="w-100 h-screen transition-all duration-500  theme-mode"
   >
-    <WelcomeLoader 
+    <WelcomeLoader
+      v-if="loaderActive"
       id="loader" 
       class="loader w-full"
-      :dark-mode-active="darkModeActive"
-      @screenMode="onSwitchScreenMode"
-      @load="loadApplication"
-    />
-    <HeaderPage
-      :dark-mode-active="darkModeActive"
-      @screenMode="onSwitchScreenMode"
-    />
+      @load="loadApplication"/>
+    <HeaderPage/>
+    <router-view></router-view>
   </div>
   
 </template>

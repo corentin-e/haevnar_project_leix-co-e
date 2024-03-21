@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <div class="text-haev_white w-full justify-center flex pt-5">
+  <div class="w-full justify-center flex pt-5">
     Admin View 
   </div>
 </template>

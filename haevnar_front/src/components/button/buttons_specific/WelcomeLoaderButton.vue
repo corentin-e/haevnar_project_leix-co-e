@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { useThemeStore } from '@/stores/app-store'
 
 import LogoHaevLight from '@/assets/logos/logo_haevnar_white_orange.png'
 import LogoHaevDark from '@/assets/logos/logo_haevnar_black_orange.png'
 
-defineProps({
-    darkMode: Boolean,
-})
+const theme = useThemeStore()
+
+theme.theme
+
 
 </script>
 
@@ -16,11 +18,11 @@ defineProps({
             type="button" 
             name="Lancer l'application" 
             class="flex items-center justify-items-center z-50 absolute rounded-full button-custom py-8 px-8"
-            :class="darkMode ? 'bg-haev_dark' : 'bg-haev_white'" 
+            :class="theme.theme == 'dark' ? 'bg-haev_dark' : 'bg-haev_white'" 
             @click="$emit('load', $event)"
         >
             <img 
-                :src="darkMode ? LogoHaevLight : LogoHaevDark" 
+                :src="theme.theme == 'dark' ? LogoHaevLight : LogoHaevDark" 
                 alt="logo Haevnär"
             >
         </button>
