@@ -29,7 +29,8 @@ watch(themeMode, (newTheme) => {
 
 
 const loadApplication = () => {
-  loaderActive.value = false
+  const loader = document.getElementById('loader')
+  loader.classList.add("hidden-loader")
 }
 
 </script>
@@ -58,9 +59,9 @@ const loadApplication = () => {
 .loader {
   transition: all .8s;
 }
-  .hidden-loader {
-    width: 0%;
-    overflow: hidden;
-    opacity: 0;
-  }
+.hidden-loader {
+  width: 0%;
+  overflow: hidden;
+  opacity: 0;
+}
 </style>./components/loading/loading_specific/welcome/WelcomeLoader.vue

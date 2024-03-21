@@ -15,8 +15,7 @@
 
 <template>
     <div 
-        class="h-screen absolute text-white flex flex-col justify-center items-center transition-all duration-500 z-50"
-        :class="theme.theme == 'dark' ? 'bg-haev_dark' : 'bg-haev_white'"
+        class="h-screen absolute text-white flex flex-col justify-center items-center transition-all duration-500 z-50 theme-mode"
     >
         <div class="top-0 right-0 absolute mt-9 mr-5">
             <SwitchScreenMode/>
@@ -26,8 +25,7 @@
             @load="$emit('load', $event)"
         />
         <span 
-            class="text-xl text-nowrap transition-all duration-500"
-            :class="theme.theme == 'dark' ? 'text-haev_white' : 'text-haev_dark'"
+            class="text-xl text-nowrap"
         >Lancer le chargement de l'application</span>
     </div>
 </template>
