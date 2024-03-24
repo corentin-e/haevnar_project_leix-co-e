@@ -5,8 +5,8 @@
 
     import SwitchScreenMode from '@/components/switch/switch_specific/SwitchScreenMode.vue';
 
-    import LogoTitleHaevnarBlack from '../assets/logos/logo_haevnär_black_title.png'
-    import LogoTitleHaevnarWhite from '../assets/logos/logo_haevnär_white_title.png'
+    import LogoTitleHaevnarBlack from '../assets/logos/logo_haevnar_black_title.png'
+    import LogoTitleHaevnarWhite from '../assets/logos/logo_haevnar_white_title.png'
 
     const theme = useThemeStore()
 
@@ -30,8 +30,8 @@
                 alt="logo title Haevnär"
             >
         </RouterLink>
-
-        <div class="flex">
+        <div class="flex items-center">
+            <div class="flex mr-10">
             <RouterLink to="/">
                 <div 
                     class="px-12 py-4 "
@@ -69,6 +69,8 @@
         <SwitchScreenMode
             @screenMode="emit('screenMode')"
         />
+        </div>
+
     </div>
 </template>
 

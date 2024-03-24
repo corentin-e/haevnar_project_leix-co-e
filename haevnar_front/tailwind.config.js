@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {},
     colors: {
+      haev_black: '#000000',
       haev_blue: '#2D72A4',
       haev_dark: '#323436',
       haev_orange: '#F77C04',

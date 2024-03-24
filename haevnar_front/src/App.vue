@@ -16,7 +16,6 @@ const themeMode = computed(() => {
   return theme.theme
 })
 
-
 watch(themeMode, (newTheme) => {
   if(newTheme == 'dark') {
     document.documentElement.style.setProperty('--bg_app', 'var(--haev_bg_mode_dark)');
@@ -27,10 +26,9 @@ watch(themeMode, (newTheme) => {
   }
 })
 
-
 const loadApplication = () => {
   const loader = document.getElementById('loader')
-  loader.classList.add("hidden-loader")
+  loader?.classList.add("hidden-loader")
 }
 
 </script>
