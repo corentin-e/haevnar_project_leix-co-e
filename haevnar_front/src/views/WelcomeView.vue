@@ -23,7 +23,7 @@
         <div class="flex items-start h-full">
           <div class="w-4/5">
             <p class="text-first-custom text-custom">
-              Bienvenue sur le site de l'Alliance d'Hævnär, 
+              Bienvenue sur le site de l'Alliance d'Hævnär,
             </p>
             <p class="pt-2">
               Un réseau interstellaire de corporations unifiées et de citoyens visionnaires dans l'univers de Star Citizen.
@@ -49,6 +49,15 @@
         <button type="button" class="rounded-full border border-haev_dark bg-transparent text-haev_dark px-5 py-2 hover:bg-haev_dark hover:text-haev_orange transition-all duration-300">Rejoindre l'Alliance</button>
     </RouterLink>
     </div>
+      <!-- News - Components -->
+    <span class="title-news-custom w-full text-center">
+      Journal de l'Alliance
+    </span>
+    <div class="flex flex-col px-10">
+      <span class="title-sub-new-custom">
+        Vie de l'alliance
+      </span>
+    </div>
   </div>
 </template>
 
@@ -72,6 +81,21 @@
 
 .text-custom {
   font-size: 22px;
+}
+
+.title-news-custom::first-letter {
+  font-family: "Slackside One", cursive;
+  font-size: 94px;
+}
+
+.title-news-custom {
+  font-size: 40px;
+}
+
+.title-sub-new-custom {
+  font-family: "Slackside One", cursive;
+  font-size: 33px;
+  color: var(--haev_orange)
 }
 
 </style>

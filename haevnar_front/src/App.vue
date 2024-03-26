@@ -34,22 +34,22 @@ const loadApplication = () => {
 </script>
 
 <header>
-  
+
 </header>
 
 <template >
   <div
-    class="w-100 h-screen transition-all duration-500 theme-mode"
+    class="w-100 transition-all duration-500 theme-mode"
   >
     <WelcomeLoader
       v-if="loaderActive"
-      id="loader" 
+      id="loader"
       class="loader w-full"
       @load="loadApplication"/>
     <HeaderPage/>
     <router-view></router-view>
   </div>
-  
+
 </template>
 
 <style scoped>
